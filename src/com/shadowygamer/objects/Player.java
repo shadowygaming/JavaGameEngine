@@ -22,4 +22,8 @@ public class Player extends GameObject{
 		Stat temp = stats.statList.get(stats.getIndexOfStat(pName));
 		temp.setValue(pX);
 	}
+	
+	public String toString() {
+		return super.toString() + stats;
+	}
 }

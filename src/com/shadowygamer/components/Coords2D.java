@@ -24,4 +24,14 @@ public class Coords2D {
 	public String toString() {
 		return x + ", " + y;
 	}
+	
+	public boolean equals(Coords2D x) {
+		if(x.getX() == this.x && x.getY() == this.y) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	
 }

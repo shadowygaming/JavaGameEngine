@@ -11,10 +11,10 @@ public class GameObject {
 	private Grid2D home;
 
 
-	public GameObject(String pName, String pType, Grid2D pGrad) {
+	public GameObject(String pName, String pType, Grid2D pGrid) {
 		objectID = new GameID(pType, pName);
 		local = new Coords2D();
-		home = pGrad;
+		home = pGrid;
 	}
 
 	//TODO: add error handling for invalid points (3)
@@ -39,11 +39,15 @@ public class GameObject {
 		local = new Coords2D(local.getX(), local.getY()+pY);
 	}
 
-	public String getGameID() {
-		return objectID.toString();
+	public GameID getGameID() {
+		return objectID;
 	}
 
-	public String getLocation() {
-		return local.toString();
+	public Coords2D getLocation() {
+		return local;
+	}
+	
+	public String toString() {
+		return objectID + ", " + local;
 	}
 }

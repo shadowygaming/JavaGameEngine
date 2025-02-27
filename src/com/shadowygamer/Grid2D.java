@@ -3,6 +3,7 @@ package com.shadowygamer;
 import java.util.ArrayList;
 
 import com.shadowygamer.components.Coords2D;
+import com.shadowygamer.objects.GameObject;
 
 public class Grid2D {
 	private ArrayList<Coords2D> grid = new ArrayList<Coords2D>();
@@ -41,4 +42,14 @@ public class Grid2D {
 			System.out.println(grid.get(i));
 		}
 	}
+	
+//	public ArrayList<GameObject> getGameObjectsOnTile(int x, int y) {
+//		Coords2D tempCoords2d = new Coords2D(x, y);
+//		ArrayList<GameObject> returnVar = new ArrayList<GameObject>();
+//		while(true) {
+//			if(Register.SearchByCoordinates(tempCoords2d) != null) {
+//				returnVar.add(Register.SearchByCoordinates(tempCoords2d));
+//			}
+//		}
+//	}
 }

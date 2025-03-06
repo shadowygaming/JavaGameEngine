@@ -2,7 +2,9 @@ package com.shadowygamer;
 
 import com.shadowygamer.components.Coords2D;
 import com.shadowygamer.components.GameID;
+import com.shadowygamer.components.Grid2D;
 import com.shadowygamer.components.Stat;
+import com.shadowygamer.components.StatBuilder;
 import com.shadowygamer.objects.GameObject;
 import com.shadowygamer.objects.Player;
 
@@ -35,15 +37,16 @@ public class Main {
 		Grid2D ExampleGrid = new Grid2D();
 		Player defaultPlayer = new Player("name", ExampleGrid, defaultPlayerStats);
 		GameObject imposterGameObject = new GameObject("twintowers", "gameobject", ExampleGrid);
-//		Register.instantRegister(defaultPlayer);
+		Register.instantRegister(defaultPlayer);
 		Register.instantRegister(imposterGameObject);
 		
 //		System.out.println(Register.SearchByID(GameID.readByString("player:name")).getLocation());
-		System.out.println(Register.SearchByCoordinates(new Coords2D(0, 0)));
+		System.out.println(Utils.getIDsfromList(Register.SearchByCoordinates(new Coords2D(0, 0))));
 		Register.reverseRegister(new GameID("gameobject", "twintowers"));
-		System.out.println(Register.SearchByCoordinates(new Coords2D(0, 0)));
-//		System.out.println(Register.instances);
-//		defaultPlayer.shiftX(2);
+		System.out.println(Utils.getIDsfromList(Register.SearchByCoordinates(new Coords2D(0, 0))));
+		defaultPlayer.shiftX(2);
+		System.out.println(Utils.getIDsfromList(Register.SearchByCoordinates(new Coords2D(0, 0))));
+
 //		System.out.println(Register.SearchByID(GameID.readByString("player:name")).getLocation());
 //		System.out.println(Utils.getIDsfromList(Register.SearchByCoordinates(new Coords2D(2, 0))));
 

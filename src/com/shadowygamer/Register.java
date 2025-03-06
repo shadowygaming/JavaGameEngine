@@ -14,7 +14,7 @@ public class Register {
 	}
 	
 	public static void reverseRegister(GameID x) {
-		instances.remove(x, SearchByID(x));
+		instances.remove(x);
 	}
 	
 	public static GameObject SearchByID(GameID x) {

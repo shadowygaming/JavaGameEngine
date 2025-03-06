@@ -1,16 +1,22 @@
 package com.shadowygamer.objects;
 
-import com.shadowygamer.Grid2D;
 import com.shadowygamer.components.Coords2D;
 import com.shadowygamer.components.GameID;
+import com.shadowygamer.components.Grid2D;
 
 public class GameObject {
-	public static String type = "gameobject";
+	protected static String type = "gameobject";
 	private Coords2D local;
 	private GameID objectID;
 	private Grid2D home;
 
 
+	public GameObject(String pName, String pType, Grid2D pGrid, Coords2D pCoords) {
+		objectID = new GameID(pType, pName);
+		local = pCoords;
+		home = pGrid;
+	}
+	
 	public GameObject(String pName, String pType, Grid2D pGrid) {
 		objectID = new GameID(pType, pName);
 		local = new Coords2D();

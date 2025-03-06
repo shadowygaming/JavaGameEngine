@@ -1,14 +1,12 @@
 package com.shadowygamer.components;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.EmptyStackException;
 
 import com.shadowygamer.objects.GameObject;
 
 public class GameID {
 	private String type;
 	private String name;
-	private HashMap<String, String> instances;
 
 	public GameID(String pType, String pName) {
 		type = pType;
@@ -24,11 +22,6 @@ public class GameID {
 		return null;
 	}
 	
-//	public static GameID getBulkIDs(ArrayList<GameObject> x) {
-//		for(GameObject i : x) {
-//			
-//		}
-//	}
 
 	public String toString() {
 		return (type + ":" + name);

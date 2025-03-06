@@ -13,6 +13,10 @@ public class Register {
 		instances.put(x.getGameID(), x);
 	}
 	
+	public static void reverseRegister(GameID x) {
+		instances.remove(x, SearchByID(x));
+	}
+	
 	public static GameObject SearchByID(GameID x) {
 		for(GameID i : instances.keySet()) {
 			if(i.toString().equals(x.toString())) {

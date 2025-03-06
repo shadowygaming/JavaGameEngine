@@ -1,7 +1,6 @@
 package com.shadowygamer;
 
 import java.util.ArrayList;
-
 import com.shadowygamer.components.Stat;
 
 public class StatBuilder {

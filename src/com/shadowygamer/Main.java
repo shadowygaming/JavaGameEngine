@@ -10,7 +10,6 @@ public class Main {
 	
 
 	public static void main(String[] args) {
-
 		//debug
 		// Grid2D luigi = new Grid2D();
 		// Player ahh = new Player("barry", luigi);
@@ -35,15 +34,18 @@ public class Main {
 		StatBuilder defaultPlayerStats = new StatBuilder(maxHealth, health, damage);
 		Grid2D ExampleGrid = new Grid2D();
 		Player defaultPlayer = new Player("name", ExampleGrid, defaultPlayerStats);
-		GameObject imposterGameObject = new GameObject("sussy", "gameobject", ExampleGrid);
-		Register.instantRegister(defaultPlayer);
+		GameObject imposterGameObject = new GameObject("twintowers", "gameobject", ExampleGrid);
+//		Register.instantRegister(defaultPlayer);
 		Register.instantRegister(imposterGameObject);
 		
-		System.out.println(Register.SearchByID(GameID.readByString("player:name")).getLocation());
+//		System.out.println(Register.SearchByID(GameID.readByString("player:name")).getLocation());
 		System.out.println(Register.SearchByCoordinates(new Coords2D(0, 0)));
-		defaultPlayer.shiftX(2);
-		System.out.println(Register.SearchByID(GameID.readByString("player:name")).getLocation());
-		System.out.println(Register.SearchByCoordinates(new Coords2D(2, 0)));
+		Register.reverseRegister(new GameID("gameobject", "twintowers"));
+		System.out.println(Register.SearchByCoordinates(new Coords2D(0, 0)));
+//		System.out.println(Register.instances);
+//		defaultPlayer.shiftX(2);
+//		System.out.println(Register.SearchByID(GameID.readByString("player:name")).getLocation());
+//		System.out.println(Utils.getIDsfromList(Register.SearchByCoordinates(new Coords2D(2, 0))));
 
 //		System.out.println(defaultPlayer.getStatBuilder());
 //		defaultPlayer.setStat("Health", 5);

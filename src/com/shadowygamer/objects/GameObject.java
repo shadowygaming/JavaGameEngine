@@ -5,7 +5,7 @@ import com.shadowygamer.components.GameID;
 import com.shadowygamer.components.Grid2D;
 
 public class GameObject {
-	protected static String type = "gameobject";
+	public static String type = "gameobject";
 	private Coords2D local;
 	private GameID objectID;
 	private Grid2D home;
@@ -32,14 +32,14 @@ public class GameObject {
 	}
 
 	public void shiftX(int pX) {
-		if(!home.isValidPointOnGrid(pX, local.getY())) {
+		if(!home.isValidPointOnGrid(local.getX() + pX, local.getY())) {
 			return;
 		}
 		local = new Coords2D(local.getX()+pX, local.getY());
 	}
 
 	public void shiftY(int pY) {
-		if(!home.isValidPointOnGrid(local.getX(), pY)) {
+		if(!home.isValidPointOnGrid(local.getX(), local.getY() + pY)) {
 			return;
 		}
 		local = new Coords2D(local.getX(), local.getY()+pY);

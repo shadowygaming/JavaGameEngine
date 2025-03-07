@@ -7,7 +7,7 @@ import com.shadowygamer.components.Stat;
 import com.shadowygamer.components.StatBuilder;
 
 public class Player extends GameObject{
-	protected static String type = "player";
+	public static String type = "player";
 	private StatBuilder stats;
 
 

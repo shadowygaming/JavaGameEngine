@@ -3,7 +3,10 @@ package com.shadowygamer;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.lang.Thread;
 
+import com.shadowygamer.components.Coords2D;
+import com.shadowygamer.components.GameID;
 import com.shadowygamer.objects.GameObject;
 
 public class Utils {
@@ -32,12 +35,28 @@ public class Utils {
 			y++;
 		}
 		while(true) {
+			//TODO: Add handling for user stupidity (non-integers)
 			int z = sc.nextInt();
 			if(z < x.length) {
 				return z;
 			}
-			System.out.println("Invalid Selection");
+			System.out.println("Invalid Range");
 		}
+	}
+	
+	public static GameObject getFirstMatchingType(ArrayList<GameObject> x, String y) {
+		for (GameObject i : x) {
+			if(i.getGameID().getType().equals(y)) {
+				return i;
+			}
+		}
+		return null;
+	}
+	
+	public static void timeDelay(int ms)
+	{
+	    try {Thread.sleep(ms);}
+	    catch(InterruptedException ex) {Thread.currentThread().interrupt();}
 	}
 
 }

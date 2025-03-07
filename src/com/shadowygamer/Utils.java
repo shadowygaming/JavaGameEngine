@@ -1,7 +1,9 @@
 package com.shadowygamer;
 
 import java.lang.reflect.Array;
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.lang.Thread;
 
@@ -35,12 +37,19 @@ public class Utils {
 			y++;
 		}
 		while(true) {
-			//TODO: Add handling for user stupidity (non-integers)
-			int z = sc.nextInt();
-			if(z < x.length) {
-				return z;
+			try {
+				int z = sc.nextInt();
+				if(z < x.length) {
+					return z;
+				} else {
+					System.out.println("Invalid Range");
+					continue;
+				}
+			} catch (InputMismatchException e) {
+				System.out.println("Invalid Input");
+				sc.next();
+				continue;
 			}
-			System.out.println("Invalid Range");
 		}
 	}
 	

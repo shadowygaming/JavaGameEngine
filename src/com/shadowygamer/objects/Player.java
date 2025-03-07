@@ -7,7 +7,7 @@ import com.shadowygamer.components.Stat;
 import com.shadowygamer.components.StatBuilder;
 
 public class Player extends GameObject{
-	public static String type = "player";
+	public static final String type = "player";
 	private StatBuilder stats;
 
 
@@ -25,6 +25,7 @@ public class Player extends GameObject{
 		temp.setValue(pX);
 	}
 	
+	@Override
 	public String toString() {
 		return super.toString() + stats;
 	}

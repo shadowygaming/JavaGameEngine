@@ -5,7 +5,7 @@ import com.shadowygamer.components.GameID;
 import com.shadowygamer.components.Grid2D;
 
 public class GameObject {
-	public static String type = "gameobject";
+	public static final String type = "gameobject";
 	private Coords2D local;
 	private GameID objectID;
 	private Grid2D home;

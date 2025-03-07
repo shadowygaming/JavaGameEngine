@@ -13,7 +13,7 @@ public class Register {
 		instances.put(x.getGameID(), x);
 	}
 	
-	public static void reverseRegister(GameID x) {
+	public static void defenestrateRegister(GameID x) {
 		instances.remove(x);
 	}
 	

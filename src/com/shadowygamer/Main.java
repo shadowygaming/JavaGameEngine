@@ -21,23 +21,26 @@ public class Main {
 			"North",
 			"South",
 			"Feast",
-			"West",
+			"Weast",
 			"Look Around",
 			"Map",
-			"Die"
-			};
+			"Die",
+			"9/11"
+		};
 		
 		String dStatue = "The oxidized copper on the statue creates a spark of curiosity...";
 		String dBuilding = "You bear witness to the remnants of a civilization long gone and wonder...";
 		
 		Info Statue = new Info("statue", grid, new Coords2D(2, 2), dStatue);
 		Info Building = new Info("building", grid, new Coords2D(), dBuilding);
+		Info Building2 = new Info("building2", grid, new Coords2D(1, 3), dBuilding);
 		Player player = new Player("player", grid, new StatBuilder());
 		
 		Register.instantRegister(player);
 		Register.instantRegister(Building);
+		Register.instantRegister(Building2);
 		Register.instantRegister(Statue);
-		
+				
 		gameloop:
 		while(true) {
 			Utils.timeDelay(150);
@@ -64,7 +67,7 @@ public class Main {
 					continue;
 				case 5:
 					for(GameObject i : Register.instances.values()) {
-						Utils.timeDelay(75);
+						Utils.timeDelay(100);
 						System.out.println(i.getGameID() + " (" + i.getLocation() + ")");
 					}
 					Utils.timeDelay(800);
@@ -72,8 +75,13 @@ public class Main {
 				case 6:
 					System.out.println("Terminating");
 					break gameloop;
+				case 7:
+					System.out.println("Its time to 9 my 11");
+					Register.defenestrateRegister(GameID.readByString("info:building"));
+					Register.defenestrateRegister(GameID.readByString("info:building2"));
+					continue;
 			}
 			System.out.println("Invalid Choice");
-		}		
+		}
 	}
 }

@@ -7,7 +7,7 @@ public class Info extends GameObject{
 	protected static String type = "info";
 	private String descriptor;
 	
-	public Info(String pName, String pDescriptor, Grid2D pGrid, Coords2D pCoords) {
+	public Info(String pName, Grid2D pGrid, Coords2D pCoords, String pDescriptor) {
 		super(pName, type, pGrid, pCoords);
 		descriptor = pDescriptor;
 	}
@@ -20,5 +20,9 @@ public class Info extends GameObject{
 		return descriptor;
 	}
 	
+	@Override
+	public String toString() {
+		return super.toString() + "\n" + descriptor;
+	}
 	
 }

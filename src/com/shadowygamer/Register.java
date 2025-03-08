@@ -9,11 +9,11 @@ import com.shadowygamer.objects.GameObject;
 public class Register {
 	public static HashMap<GameID, GameObject> instances = new HashMap<GameID, GameObject>();
 	
-	public static void instantRegister(GameObject x) {
+	public static void createRegistry(GameObject x) {
 		instances.put(x.getGameID(), x);
 	}
 	
-	public static void defenestrateRegister(GameID x) {
+	public static void defenestrateRegistry(GameID x) {
 		instances.remove(x);
 	}
 	

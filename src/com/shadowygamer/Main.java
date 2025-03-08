@@ -1,17 +1,15 @@
 package com.shadowygamer;
 
-import java.util.ArrayList;
-
 import com.shadowygamer.components.Coords2D;
 import com.shadowygamer.components.GameID;
 import com.shadowygamer.components.Grid2D;
-import com.shadowygamer.components.Stat;
 import com.shadowygamer.components.StatBuilder;
 import com.shadowygamer.objects.GameObject;
 import com.shadowygamer.objects.Info;
 import com.shadowygamer.objects.Player;
 
 public class Main {
+	
 	
 
 	public static void main(String[] args) {
@@ -28,6 +26,8 @@ public class Main {
 			"9/11"
 		};
 		
+		String[] invalidOptions = new String[options.length];
+		
 		String dStatue = "The oxidized copper on the statue creates a spark of curiosity...";
 		String dBuilding = "You bear witness to the remnants of a civilization long gone and wonder...";
 		
@@ -36,17 +36,27 @@ public class Main {
 		Info Building2 = new Info("building2", grid, new Coords2D(1, 3), dBuilding);
 		Player player = new Player("player", grid, new StatBuilder());
 		
-		Register.instantRegister(player);
-		Register.instantRegister(Building);
-		Register.instantRegister(Building2);
-		Register.instantRegister(Statue);
+		Register.createRegistry(player);
+		Register.createRegistry(Building);
+		Register.createRegistry(Building2);
+		Register.createRegistry(Statue);
 				
 		gameloop:
 		while(true) {
+			Coords2D playerLocation = player.getLocation();
+			GameObject firstInfoObjectOnSpace = Utils.getFirstMatchingType(Register.SearchByCoordinates(player.getLocation()), Info.type);
 			Utils.timeDelay(150);
-			System.out.println("\nLocation: " + player.getLocation());
+			System.out.println("\nLocation: " + playerLocation);
 			Utils.timeDelay(300);
-			switch(Utils.prompt(options)) {
+			
+			invalidOptions[0] = (grid.isValidPointOnGrid(playerLocation.getX(), playerLocation.getY()+1)) ? "" : options[0];
+			invalidOptions[1] = (grid.isValidPointOnGrid(playerLocation.getX(), playerLocation.getY()-1)) ? "" : options[1];
+			invalidOptions[2] = (grid.isValidPointOnGrid(playerLocation.getX()+1, playerLocation.getY())) ? "" : options[2];
+			invalidOptions[3] = (grid.isValidPointOnGrid(playerLocation.getX()-1, playerLocation.getY())) ? "" : options[3];
+			invalidOptions[4] = (firstInfoObjectOnSpace != null) ? "" : options[4];
+
+			
+			switch(Utils.prompt(options, invalidOptions)) {
 				case 0:
 					player.shiftY(1);
 					continue;
@@ -60,8 +70,6 @@ public class Main {
 					player.shiftX(-1);
 					continue;
 				case 4:
-					GameObject firstInfoObjectOnSpace = Utils.getFirstMatchingType(Register.SearchByCoordinates(player.getLocation()), Info.type);
-					if(firstInfoObjectOnSpace == null) break;
 					Utils.timeDelay(400);
 					System.out.println(((Info)firstInfoObjectOnSpace).getDescriptor());
 					continue;
@@ -77,8 +85,8 @@ public class Main {
 					break gameloop;
 				case 7:
 					System.out.println("Its time to 9 my 11");
-					Register.defenestrateRegister(GameID.readByString("info:building"));
-					Register.defenestrateRegister(GameID.readByString("info:building2"));
+					Register.defenestrateRegistry(GameID.readByString("info:building"));
+					Register.defenestrateRegistry(GameID.readByString("info:building2"));
 					continue;
 			}
 			System.out.println("Invalid Choice");

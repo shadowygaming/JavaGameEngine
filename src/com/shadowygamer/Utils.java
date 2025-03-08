@@ -1,14 +1,10 @@
 package com.shadowygamer;
 
-import java.lang.reflect.Array;
-import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.lang.Thread;
 
-import com.shadowygamer.components.Coords2D;
-import com.shadowygamer.components.GameID;
 import com.shadowygamer.objects.GameObject;
 
 public class Utils {
@@ -30,16 +26,20 @@ public class Utils {
 		return temp;
 	}
 	
-	public static int prompt(String... x) {
+	public static int prompt(String[] options, String[] invalid) {
 		int y = 0;
-		for(String i : x) {
-			System.out.println("[" + y + "] " + i);
+		for(int i = 0; i < options.length; i++) {
+			if(options[i].equals(invalid[i])) {
+				System.out.println("[x] " + i);
+			} else {
+				System.out.println("[" + y + "] " + i);
+			}
 			y++;
 		}
 		while(true) {
 			try {
 				int z = sc.nextInt();
-				if(z < x.length) {
+				if(z < options.length) {
 					return z;
 				} else {
 					System.out.println("Invalid Range");

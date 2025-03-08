@@ -1,9 +1,6 @@
 package com.shadowygamer.components;
 
-import java.util.EmptyStackException;
 import java.util.Objects;
-
-import com.shadowygamer.objects.GameObject;
 
 public class GameID {
 	private String type;

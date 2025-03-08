@@ -2,8 +2,6 @@ package com.shadowygamer.components;
 
 import java.util.ArrayList;
 
-import com.shadowygamer.objects.GameObject;
-
 public class Grid2D {
 	private ArrayList<Coords2D> grid = new ArrayList<Coords2D>();
 
@@ -35,20 +33,15 @@ public class Grid2D {
 		}
 		return false;
 	}
+	
+	public boolean isValidPointOnGrid(Coords2D pCoords) {
+		return this.isValidPointOnGrid(pCoords.getX(), pCoords.getY());
+		
+	}
 
 	public void printValidSpaces() {
 		for(int i = 0; i < grid.size(); i++) {
 			System.out.println(grid.get(i));
 		}
 	}
-	
-//	public ArrayList<GameObject> getGameObjectsOnTile(int x, int y) {
-//		Coords2D tempCoords2d = new Coords2D(x, y);
-//		ArrayList<GameObject> returnVar = new ArrayList<GameObject>();
-//		while(true) {
-//			if(Register.SearchByCoordinates(tempCoords2d) != null) {
-//				returnVar.add(Register.SearchByCoordinates(tempCoords2d));
-//			}
-//		}
-//	}
 }

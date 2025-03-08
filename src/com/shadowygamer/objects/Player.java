@@ -1,7 +1,5 @@
 package com.shadowygamer.objects;
 
-import java.util.HashMap;
-
 import com.shadowygamer.components.Grid2D;
 import com.shadowygamer.components.Stat;
 import com.shadowygamer.components.StatBuilder;

@@ -89,7 +89,6 @@ public class Main {
 					Register.defenestrateRegistry(GameID.readByString("info:building2"));
 					continue;
 			}
-			System.out.println("Invalid Choice");
 		}
 	}
 }

@@ -40,6 +40,10 @@ public class Utils {
 			try {
 				int z = sc.nextInt();
 				if(z < options.length) {
+					if(options[z].equals(invalid[z])) {
+						System.out.println("Invalid Choice");
+						continue;
+					}
 					return z;
 				} else {
 					System.out.println("Invalid Range");

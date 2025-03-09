@@ -32,7 +32,7 @@ public class Main {
 		String dBuilding = "You bear witness to the remnants of a civilization long gone and wonder...";
 		
 		Info Statue = new Info("statue", grid, new Coords2D(2, 2), dStatue);
-		Info Building = new Info("building", grid, new Coords2D(), dBuilding);
+		Info Building = new Info("building1", grid, new Coords2D(), dBuilding);
 		Info Building2 = new Info("building2", grid, new Coords2D(1, 3), dBuilding);
 		Player player = new Player("player", grid, new StatBuilder());
 		
@@ -45,49 +45,49 @@ public class Main {
 		while(true) {
 			Coords2D playerLocation = player.getLocation();
 			GameObject firstInfoObjectOnSpace = Utils.getFirstMatchingType(Register.SearchByCoordinates(player.getLocation()), Info.type);
-			Utils.timeDelay(150);
 			System.out.println("\nLocation: " + playerLocation);
 			Utils.timeDelay(300);
 			
-			invalidOptions[0] = (grid.isValidPointOnGrid(playerLocation.getX(), playerLocation.getY()+1)) ? "" : options[0];
-			invalidOptions[1] = (grid.isValidPointOnGrid(playerLocation.getX(), playerLocation.getY()-1)) ? "" : options[1];
-			invalidOptions[2] = (grid.isValidPointOnGrid(playerLocation.getX()+1, playerLocation.getY())) ? "" : options[2];
-			invalidOptions[3] = (grid.isValidPointOnGrid(playerLocation.getX()-1, playerLocation.getY())) ? "" : options[3];
+			invalidOptions[0] = (grid.isValidPointOnGrid(playerLocation.getX(), playerLocation.getY() + 1)) ? "" : options[0];
+			invalidOptions[1] = (grid.isValidPointOnGrid(playerLocation.getX(), playerLocation.getY() - 1)) ? "" : options[1];
+			invalidOptions[2] = (grid.isValidPointOnGrid(playerLocation.getX() + 1, playerLocation.getY())) ? "" : options[2];
+			invalidOptions[3] = (grid.isValidPointOnGrid(playerLocation.getX() - 1, playerLocation.getY())) ? "" : options[3];
 			invalidOptions[4] = (firstInfoObjectOnSpace != null) ? "" : options[4];
 
 			
 			switch(Utils.prompt(options, invalidOptions)) {
+				default:
+					Utils.timeDelay(200);
 				case 0:
 					player.shiftY(1);
-					continue;
+					break;
 				case 1:
 					player.shiftY(-1);
-					continue;
+					break;
 				case 2:
 					player.shiftX(1);
-					continue;
+					break;
 				case 3:
 					player.shiftX(-1);
-					continue;
+					break;
 				case 4:
-					Utils.timeDelay(400);
 					System.out.println(((Info)firstInfoObjectOnSpace).getDescriptor());
-					continue;
+					break;
 				case 5:
 					for(GameObject i : Register.instances.values()) {
 						Utils.timeDelay(100);
-						System.out.println(i.getGameID() + " (" + i.getLocation() + ")");
+						System.out.println(i.getGameID().getName() + " (" + i.getLocation() + ")");
 					}
 					Utils.timeDelay(800);
-					continue;
+					break;
 				case 6:
 					System.out.println("Terminating");
 					break gameloop;
 				case 7:
 					System.out.println("Its time to 9 my 11");
-					Register.defenestrateRegistry(GameID.readByString("info:building"));
+					Register.defenestrateRegistry(GameID.readByString("info:building1"));
 					Register.defenestrateRegistry(GameID.readByString("info:building2"));
-					continue;
+					break;
 			}
 		}
 	}

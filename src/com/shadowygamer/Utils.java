@@ -27,30 +27,29 @@ public class Utils {
 	}
 	
 	public static int prompt(String[] options, String[] invalid) {
-		int y = 0;
 		for(int i = 0; i < options.length; i++) {
 			if(options[i].equals(invalid[i])) {
-				System.out.println("[x] " + i);
+				System.out.println("[~] " + options[i]);
 			} else {
-				System.out.println("[" + y + "] " + i);
+				System.out.println("[" + i + "] " + options[i]);
 			}
-			y++;
 		}
 		while(true) {
 			try {
+				System.out.print(">> ");
 				int z = sc.nextInt();
 				if(z < options.length) {
 					if(options[z].equals(invalid[z])) {
-						System.out.println("Invalid Choice");
+						System.out.println(">> Invalid Choice");
 						continue;
 					}
 					return z;
 				} else {
-					System.out.println("Invalid Range");
+					System.out.println(">> Invalid Range");
 					continue;
 				}
 			} catch (InputMismatchException e) {
-				System.out.println("Invalid Input");
+				System.out.println(">> Invalid Input");
 				sc.next();
 				continue;
 			}

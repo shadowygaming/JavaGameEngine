@@ -3,7 +3,7 @@ package com.shadowygamer.objects;
 import com.shadowygamer.components.Coords2D;
 import com.shadowygamer.components.Grid2D;
 
-public class Info extends GameObject{
+public class Info extends GameObject {
 	public static final String type = "info";
 	private String descriptor;
 	

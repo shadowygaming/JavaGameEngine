@@ -4,7 +4,7 @@ import com.shadowygamer.components.Grid2D;
 import com.shadowygamer.components.Stat;
 import com.shadowygamer.components.StatBuilder;
 
-public class Player extends GameObject{
+public class Player extends GameObject {
 	public static final String type = "player";
 	private StatBuilder stats;
 

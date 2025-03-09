@@ -65,10 +65,21 @@ public class Utils {
 		return null;
 	}
 	
-	public static void timeDelay(int ms)
-	{
+	public static void timeDelay(int ms) {
 	    try {Thread.sleep(ms);}
 	    catch(InterruptedException ex) {Thread.currentThread().interrupt();}
+	}
+	
+	public static void cinematicPrint(String printedString, int delayMillesecond) {
+		for(char i : printedString.toCharArray()) {
+			System.out.print(i);
+			timeDelay(delayMillesecond);
+		}
+		System.out.println();
+	}
+	
+	public static void cinematicPrint(String printedString) {
+		cinematicPrint(printedString, 20);
 	}
 
 }

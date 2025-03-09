@@ -3,7 +3,8 @@ package com.shadowygamer;
 import com.shadowygamer.components.Coords2D;
 import com.shadowygamer.components.GameID;
 import com.shadowygamer.components.Grid2D;
-import com.shadowygamer.components.StatBuilder;
+import com.shadowygamer.components.StatHolder;
+import com.shadowygamer.custom.DetonateExplosives;
 import com.shadowygamer.objects.GameObject;
 import com.shadowygamer.objects.Info;
 import com.shadowygamer.objects.Player;
@@ -22,8 +23,8 @@ public class Main {
 			"Weast",
 			"Look Around",
 			"Map",
-			"Die",
-			"9/11"
+			"Interact",
+			"Die"
 		};
 		
 		String[] invalidOptions = new String[options.length];
@@ -34,17 +35,19 @@ public class Main {
 		Info Statue = new Info("statue", grid, new Coords2D(2, 2), dStatue);
 		Info Building = new Info("building1", grid, new Coords2D(), dBuilding);
 		Info Building2 = new Info("building2", grid, new Coords2D(1, 3), dBuilding);
-		Player player = new Player("player", grid, new StatBuilder());
+		Player player = new Player("player", grid, new StatHolder());
+		DetonateExplosives test = new DetonateExplosives("plane", grid, new Coords2D(4, 4));
 		
 		Register.createRegistry(player);
 		Register.createRegistry(Building);
 		Register.createRegistry(Building2);
 		Register.createRegistry(Statue);
+		Register.createRegistry(test);
 				
 		gameloop:
 		while(true) {
 			Coords2D playerLocation = player.getLocation();
-			GameObject firstInfoObjectOnSpace = Utils.getFirstMatchingType(Register.SearchByCoordinates(player.getLocation()), Info.type);
+			GameObject firstInfoObjectOnSpace = Utils.getFirstMatchingType(Register.SearchByCoordinates(playerLocation), Info.TYPE);
 			System.out.println("\nLocation: " + playerLocation);
 			Utils.timeDelay(300);
 			
@@ -53,6 +56,7 @@ public class Main {
 			invalidOptions[2] = (grid.isValidPointOnGrid(playerLocation.getX() + 1, playerLocation.getY())) ? "" : options[2];
 			invalidOptions[3] = (grid.isValidPointOnGrid(playerLocation.getX() - 1, playerLocation.getY())) ? "" : options[3];
 			invalidOptions[4] = (firstInfoObjectOnSpace != null) ? "" : options[4];
+			invalidOptions[6] = (playerLocation.equals(test.getLocation())) ? "" : options[6];
 
 			
 			switch(Utils.prompt(options, invalidOptions)) {
@@ -81,13 +85,10 @@ public class Main {
 					Utils.timeDelay(800);
 					break;
 				case 6:
+					test.Interact();
+				case 7:
 					System.out.println("Terminating");
 					break gameloop;
-				case 7:
-					System.out.println("Its time to 9 my 11");
-					Register.defenestrateRegistry(GameID.readByString("info:building1"));
-					Register.defenestrateRegistry(GameID.readByString("info:building2"));
-					break;
 			}
 		}
 	}

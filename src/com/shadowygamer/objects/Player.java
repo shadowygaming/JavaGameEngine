@@ -2,29 +2,29 @@ package com.shadowygamer.objects;
 
 import com.shadowygamer.components.Grid2D;
 import com.shadowygamer.components.Stat;
-import com.shadowygamer.components.StatBuilder;
+import com.shadowygamer.components.StatHolder;
 
 public class Player extends GameObject {
-	public static final String type = "player";
-	private StatBuilder stats;
+	public static final String TYPE = "player";
+	private StatHolder playerStats;
 
 
-	public Player(String pName, Grid2D pGrid, StatBuilder pStats) {
-		super(pName, type, pGrid);
-		stats = pStats;
+	public Player(String pName, Grid2D pGrid, StatHolder pStats) {
+		super(pName, TYPE, pGrid);
+		playerStats = pStats;
 	}
 
-	public StatBuilder getStatBuilder() {
-		return stats;
+	public StatHolder getStatHolder() {
+		return playerStats;
 	}
 
 	public void setStat(String pName, int pX) {
-		Stat temp = stats.statList.get(stats.getIndexOfStat(pName));
+		Stat temp = playerStats.statList.get(playerStats.getIndexOfStat(pName));
 		temp.setValue(pX);
 	}
 	
 	@Override
 	public String toString() {
-		return super.toString() + stats;
+		return super.toString() + playerStats;
 	}
 }

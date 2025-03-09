@@ -2,11 +2,13 @@ package com.shadowygamer.components;
 
 import java.util.ArrayList;
 
-public class StatBuilder {
+//this is literally just a custom implementation of map?
+//Too Bad!
+public class StatHolder {
 	public ArrayList<Stat> statList = new ArrayList<Stat>();
 
-	public StatBuilder(Stat... pStatList) {
-		for(Stat i : pStatList) {
+	public StatHolder(Stat... pStats) {
+		for(Stat i : pStats) {
 			statList.add(i);
 		}
 	}
@@ -28,8 +30,4 @@ public class StatBuilder {
 		temp += "}";
 		return temp;
 	}
-
-	// public ArrayList<Stat> getStatList() {
-	// 	return statList;
-	// }
 }

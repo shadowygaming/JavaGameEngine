@@ -1,5 +1,7 @@
 package com.shadowygamer.components;
 
+import java.util.Objects;
+
 public class Coords2D {
 	private int x;
 	private int y;
@@ -25,12 +27,21 @@ public class Coords2D {
 		return x + ", " + y;
 	}
 	
-	public boolean equals(Coords2D x) {
-		if(x.getX() == this.x && x.getY() == this.y) {
+	@Override
+	public int hashCode() {
+		return Objects.hash(x, y);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
 			return true;
-		} else {
+		if (obj == null)
 			return false;
-		}
+		if (getClass() != obj.getClass())
+			return false;
+		Coords2D other = (Coords2D) obj;
+		return x == other.x && y == other.y;
 	}
 
 	

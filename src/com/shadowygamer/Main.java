@@ -1,7 +1,6 @@
 package com.shadowygamer;
 
 import com.shadowygamer.components.Coords2D;
-import com.shadowygamer.components.GameID;
 import com.shadowygamer.components.Grid2D;
 import com.shadowygamer.components.StatHolder;
 import com.shadowygamer.custom.DetonateExplosives;

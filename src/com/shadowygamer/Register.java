@@ -19,7 +19,7 @@ public class Register {
 	
 	public static GameObject SearchByID(GameID x) {
 		for(GameID i : instances.keySet()) {
-			if(i.toString().equals(x.toString())) {
+			if(i.equals(x)) {
 				return instances.get(i);
 			}
 		}

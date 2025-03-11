@@ -53,6 +53,10 @@ public class GameObject {
 		return local;
 	}
 	
+	public Grid2D getGrid() {
+		return home;
+	}
+	
 	public String toString() {
 		return objectID + ", " + local;
 	}

@@ -5,7 +5,9 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.lang.Thread;
 
+import com.shadowygamer.items.Item;
 import com.shadowygamer.objects.GameObject;
+import com.shadowygamer.objects.Player;
 
 public class Utils {
 	public static Scanner sc = new Scanner(System.in);
@@ -56,9 +58,22 @@ public class Utils {
 		}
 	}
 	
-	public static GameObject getFirstMatchingType(ArrayList<GameObject> x, String y) {
+	public static int prompt(String[] options) {
+		return prompt(options, new String[options.length]);
+	}
+	
+	public static GameObject getFirstMatchingType(ArrayList<GameObject> x, String type) {
 		for (GameObject i : x) {
-			if(i.getGameID().getType().equals(y)) {
+			if(i.getGameID().getType().equals(type)) {
+				return i;
+			}
+		}
+		return null;
+	}
+	
+	public static Item getFirstMatchingItem(ArrayList<Item> x, String type) {
+		for (Item i : x) {
+			if(i.getGameID().getType().equals(type)) {
 				return i;
 			}
 		}
@@ -80,6 +95,15 @@ public class Utils {
 	
 	public static void cinematicPrint(String printedString) {
 		cinematicPrint(printedString, 20);
+	}
+	
+	public static Item browseInventory(Player pPlayer) {
+		String[] Inventory = new String[pPlayer.getInventory().size()];
+		for(int i = 0; i < pPlayer.getInventory().size(); i++) {
+			Inventory[i] = pPlayer.getInventory().get(i).getGameID().getName();
+		}
+		int selection = prompt(Inventory);
+		return pPlayer.getInventory().get(selection);
 	}
 
 }

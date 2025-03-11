@@ -10,7 +10,7 @@ import com.shadowygamer.items.Item;
 public class Player extends GameObject {
 	public static final String TYPE = "player";
 	private HashMap<String, Integer> Stats = new HashMap<>();
-	public ArrayList<Item> Inventory = new ArrayList<Item>();
+	private ArrayList<Item> Inventory = new ArrayList<Item>();
 
 
 	public Player(String pName, Grid2D pGrid, HashMap<String, Integer> pStats) {
@@ -45,13 +45,32 @@ public class Player extends GameObject {
 		return null;
 	}
 	
+	public boolean AddToInventory(Item x) {
+		if (!Inventory.contains(x)) {
+			Inventory.add(x);
+			return true;
+		}
+		return false;
+	}
+	
+	public ArrayList<Item> getInventory() {
+		return Inventory;
+	}
+	
+	public boolean consume(GameID x) {
+		SearchByID(x).consume();
+		return Inventory.remove(SearchByID(x));
+	}
+	
+	public boolean consume(Item x) {
+		x.consume();
+		return Inventory.remove(x);
+	}
+	
 	@Override
 	public String toString() {
 		return super.toString();
 	}
 	
-	public boolean Consume(GameID x) {
-		SearchByID(x).consume();
-		return Inventory.remove(SearchByID(x));
-	}
+
 }

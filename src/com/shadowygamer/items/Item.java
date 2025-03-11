@@ -1,21 +1,20 @@
 package com.shadowygamer.items;
 
-import com.shadowygamer.Rarities;
 import com.shadowygamer.components.GameID;
 
-public class Item {
+abstract public class Item {
 	public static final String TYPE = "item";
 	private GameID itemID;
 	private Rarities rarities;
 	
 	public Item(String pName, String pType, Rarities pRarity) {
 		itemID = new GameID(pType, pName);
-		setRarities(pRarity);
+		setRarity(pRarity);
 	}
 	
 	public Item(String pName, String pType) {
 		itemID = new GameID(pType, pName);
-		setRarities(Rarities.COMMON);
+		setRarity(Rarities.COMMON);
 	}
 	
 	
@@ -27,15 +26,13 @@ public class Item {
 		return itemID.toString();
 	}
 	
-	public Rarities getRarities() {
+	public Rarities getRarity() {
 		return rarities;
 	}
 	
-	public void setRarities(Rarities rarities) {
+	protected void setRarity(Rarities rarities) {
 		this.rarities = rarities;
 	}
 	
-	public void consume() {
-		
-	}
+	abstract public void consume();
 }

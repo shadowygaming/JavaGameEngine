@@ -9,7 +9,7 @@ import com.shadowygamer.objects.Interactable;
 public class DetonateExplosives extends Interactable {
 	
 	public DetonateExplosives(String pName, Grid2D pGrid, Coords2D pCoords) {
-		super(pName, TYPE, pGrid, pCoords);
+		super(pName, Interactable.TYPE, pGrid, pCoords);
 	}
 
 	@Override

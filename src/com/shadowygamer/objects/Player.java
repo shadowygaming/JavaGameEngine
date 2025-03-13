@@ -8,13 +8,12 @@ import com.shadowygamer.components.Grid2D;
 import com.shadowygamer.items.Item;
 
 public class Player extends GameObject {
-	public static final String TYPE = "player";
 	private HashMap<String, Integer> Stats = new HashMap<>();
 	private ArrayList<Item> Inventory = new ArrayList<Item>();
 
 
 	public Player(String pName, Grid2D pGrid, HashMap<String, Integer> pStats) {
-		super(pName, TYPE, pGrid);
+		super(pName, "player", pGrid);
 		Stats = pStats;
 	}
 	

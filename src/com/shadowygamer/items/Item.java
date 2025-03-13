@@ -5,7 +5,7 @@ import com.shadowygamer.components.GameID;
 abstract public class Item {
 	public static final String TYPE = "item";
 	private GameID itemID;
-	private Rarities rarities;
+	private Rarities rarity;
 	
 	public Item(String pName, String pType, Rarities pRarity) {
 		itemID = new GameID(pType, pName);
@@ -27,11 +27,11 @@ abstract public class Item {
 	}
 	
 	public Rarities getRarity() {
-		return rarities;
+		return rarity;
 	}
 	
-	protected void setRarity(Rarities rarities) {
-		this.rarities = rarities;
+	protected void setRarity(Rarities pRarity) {
+		rarity = pRarity;
 	}
 	
 	abstract public void consume();

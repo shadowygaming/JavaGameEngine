@@ -6,11 +6,10 @@ import com.shadowygamer.objects.Player;
 
 public class HealthPotion extends Item {
 	private Player player;
-	public static final String TYPE = "healthpotion";
 	public static final Rarities RARITIES = Rarities.COMMON; 
 	
 	public HealthPotion(String pName, Rarities pRarity, Player pPlayer) {
-		super(pName, TYPE, RARITIES);
+		super(pName, "healthpotion", RARITIES);
 		player = pPlayer;
 		pPlayer.AddToInventory(this);
 	}

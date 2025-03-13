@@ -6,7 +6,6 @@ import com.shadowygamer.components.Coords2D;
 import com.shadowygamer.components.Grid2D;
 import com.shadowygamer.custom.DetonateExplosives;
 import com.shadowygamer.custom.HealthPotion;
-import com.shadowygamer.items.Item;
 import com.shadowygamer.items.Rarities;
 import com.shadowygamer.objects.GameObject;
 import com.shadowygamer.objects.Info;
@@ -33,19 +32,23 @@ public class Game {
 		
 		String[] invalidOptions = new String[options.length];
 		
+		//create descriptors for info objects
 		String dStatue = "The oxidized copper on the statue creates a spark of curiosity...";
 		String dBuilding = "You bear witness to the remnants of a civilization long gone and wonder...";
 		
+		//create default stats to assign to player
 		HashMap<String, Integer> playerStats = new HashMap<>();
 		playerStats.put("health", 10);
 		playerStats.put("maxhealth", 10);
 		
+		//create objects for game
 		Info Statue = new Info("statue", grid, new Coords2D(2, 2), dStatue);
 		Info Building = new Info("building1", grid, new Coords2D(), dBuilding);
 		Info Building2 = new Info("building2", grid, new Coords2D(1, 3), dBuilding);
 		Player player = new Player("player", grid, playerStats);
 		DetonateExplosives test = new DetonateExplosives("plane", grid, new Coords2D(4, 4));
 		
+		//add objects to registry
 		Register.createRegistry(player);
 		Register.createRegistry(Building);
 		Register.createRegistry(Building2);
@@ -59,8 +62,11 @@ public class Game {
 		while(true) {
 			Coords2D playerLocation = player.getLocation();
 			int playerHealth = player.getStat("health");
+			int playerMaxHealth = player.getStat("maxhealth");
 			GameObject firstInfoObjectOnSpace = Utils.getFirstMatchingType(Register.SearchByCoordinates(playerLocation), Info.TYPE);
 			GameObject firstInteractableOnSpace = Utils.getFirstMatchingType(Register.SearchByCoordinates(playerLocation), Interactable.TYPE);
+			
+			
 			System.out.println("\nLocation: " + playerLocation);
 			Utils.timeDelay(300);
 			

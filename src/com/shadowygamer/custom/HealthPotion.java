@@ -12,6 +12,7 @@ public class HealthPotion extends Item {
 	public HealthPotion(String pName, Rarities pRarity, Player pPlayer) {
 		super(pName, TYPE, RARITIES);
 		player = pPlayer;
+		pPlayer.AddToInventory(this);
 	}
 
 	@Override
@@ -20,4 +21,6 @@ public class HealthPotion extends Item {
 		int playerMaxHP = player.getStat("maxhealth");
 		player.setStat("health", ((playerHP + 3) >= playerMaxHP) ? playerMaxHP : playerHP + 3);
 	}
+	
+	//get validity function for browse inventory?
 }

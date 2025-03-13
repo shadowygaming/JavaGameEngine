@@ -6,6 +6,7 @@ import com.shadowygamer.components.Coords2D;
 import com.shadowygamer.components.Grid2D;
 import com.shadowygamer.custom.DetonateExplosives;
 import com.shadowygamer.custom.HealthPotion;
+import com.shadowygamer.items.Item;
 import com.shadowygamer.items.Rarities;
 import com.shadowygamer.objects.GameObject;
 import com.shadowygamer.objects.Info;
@@ -26,7 +27,8 @@ public class Game {
 			"Check Map",
 			"Interact",
 			"Use Item",
-			"Quit"
+			"Quit",
+			"Self Harm"
 		};
 		
 		String[] invalidOptions = new String[options.length];
@@ -50,12 +52,13 @@ public class Game {
 		Register.createRegistry(Statue);
 		Register.createRegistry(test);
 		
-		player.AddToInventory(new HealthPotion("pot1", Rarities.COMMON, player));
-		player.AddToInventory(new HealthPotion("pot2", Rarities.COMMON, player));
+		new HealthPotion("pot1", Rarities.COMMON, player);
+		new HealthPotion("pot2", Rarities.COMMON, player);
 
 		gameloop:
 		while(true) {
 			Coords2D playerLocation = player.getLocation();
+			int playerHealth = player.getStat("health");
 			GameObject firstInfoObjectOnSpace = Utils.getFirstMatchingType(Register.SearchByCoordinates(playerLocation), Info.TYPE);
 			GameObject firstInteractableOnSpace = Utils.getFirstMatchingType(Register.SearchByCoordinates(playerLocation), Interactable.TYPE);
 			System.out.println("\nLocation: " + playerLocation);
@@ -67,7 +70,8 @@ public class Game {
 			invalidOptions[3] = (grid.isValidPointOnGrid(playerLocation.getX() - 1, playerLocation.getY())) ? "" : options[3];
 			invalidOptions[4] = (firstInfoObjectOnSpace != null) ? "" : options[4];
 			invalidOptions[6] = (firstInteractableOnSpace != null) ? "" : options[6];
-			invalidOptions[7] = (Utils.getFirstMatchingItem(player.getInventory(), HealthPotion.TYPE) != null) ? "" : options[7];
+			invalidOptions[7] = (!player.getInventory().isEmpty()) ? "" : options[7];
+			invalidOptions[9] = (playerHealth - 3 > 0) ? "" : options[9];
 
 			
 			System.out.println("HP " + player.getStat("health") + "/" + player.getStat("maxhealth"));
@@ -104,6 +108,8 @@ public class Game {
 				case 8:
 					System.out.println("Terminating");
 					break gameloop;
+				case 9:
+					player.setStat("health", playerHealth-3);
 			}
 		}
 	}

@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 import com.shadowygamer.components.GameID;
 import com.shadowygamer.components.Grid2D;
-import com.shadowygamer.items.Item;
+import com.shadowygamer.items_components.Item;
 
 public class Player extends GameObject {
 	private HashMap<String, Integer> Stats = new HashMap<>();

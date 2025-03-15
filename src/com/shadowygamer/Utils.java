@@ -5,8 +5,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.lang.Thread;
 
-import com.shadowygamer.items.Consumable;
-import com.shadowygamer.items.Item;
+import com.shadowygamer.items_components.Consumable;
+import com.shadowygamer.items_components.Item;
 import com.shadowygamer.objects.GameObject;
 import com.shadowygamer.objects.Player;
 

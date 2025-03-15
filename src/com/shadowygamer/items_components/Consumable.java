@@ -1,4 +1,4 @@
-package com.shadowygamer.items;
+package com.shadowygamer.items_components;
 
 public interface Consumable {
 

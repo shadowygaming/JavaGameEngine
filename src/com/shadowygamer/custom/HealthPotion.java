@@ -1,8 +1,8 @@
 package com.shadowygamer.custom;
 
-import com.shadowygamer.items.Consumable;
-import com.shadowygamer.items.Item;
-import com.shadowygamer.items.Rarities;
+import com.shadowygamer.items_components.Consumable;
+import com.shadowygamer.items_components.Item;
+import com.shadowygamer.items_components.Rarities;
 import com.shadowygamer.objects.Player;
 
 public class HealthPotion extends Item implements Consumable {

@@ -33,8 +33,8 @@ public class Game {
 		String[] invalidOptions = new String[options.length];
 		
 		//create descriptors for info objects
-		String dStatue = "The oxidized copper on the statue creates a spark of curiosity...";
-		String dBuilding = "You bear witness to the remnants of a civilization long gone and wonder...";
+		String statueDescriptor = "The oxidized copper on the statue invokes a spark of creativity...";
+		String buildingDescriptor = "You bear witness to the remnants of a civilization long gone and wonder...";
 		
 		//create default stats to assign to player
 		HashMap<String, Integer> playerStats = new HashMap<>();
@@ -42,9 +42,9 @@ public class Game {
 		playerStats.put("maxhealth", 10);
 		
 		//create objects for game
-		Info Statue = new Info("statue", grid, new Coords2D(2, 2), dStatue);
-		Info Building = new Info("building1", grid, new Coords2D(), dBuilding);
-		Info Building2 = new Info("building2", grid, new Coords2D(1, 3), dBuilding);
+		Info Statue = new Info("statue", grid, new Coords2D(2, 2), statueDescriptor);
+		Info Building = new Info("building1", grid, new Coords2D(), buildingDescriptor);
+		Info Building2 = new Info("building2", grid, new Coords2D(1, 3), buildingDescriptor);
 		Player player = new Player("player", grid, playerStats);
 		DetonateExplosives test = new DetonateExplosives("plane", grid, new Coords2D(4, 4));
 		
@@ -55,8 +55,8 @@ public class Game {
 		Register.createRegistry(Statue);
 		Register.createRegistry(test);
 		
-		new HealthPotion("pot1", Rarities.COMMON, player);
-		new HealthPotion("pot2", Rarities.COMMON, player);
+		new HealthPotion("Health Potion", Rarities.COMMON, player);
+		new HealthPotion("Health Potion", Rarities.COMMON, player);
 
 		gameloop:
 		while(true) {

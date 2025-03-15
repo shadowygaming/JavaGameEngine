@@ -56,16 +56,6 @@ public class Player extends GameObject {
 		return Inventory;
 	}
 	
-	public boolean consume(GameID x) {
-		SearchByID(x).consume();
-		return Inventory.remove(SearchByID(x));
-	}
-	
-	public boolean consume(Item x) {
-		x.consume();
-		return Inventory.remove(x);
-	}
-	
 	@Override
 	public String toString() {
 		return super.toString();

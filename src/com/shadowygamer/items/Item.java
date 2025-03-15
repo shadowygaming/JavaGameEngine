@@ -1,22 +1,31 @@
 package com.shadowygamer.items;
 
 import com.shadowygamer.components.GameID;
+import com.shadowygamer.objects.Player;
 
 abstract public class Item {
 	public static final String TYPE = "item";
 	private GameID itemID;
-	private Rarities rarity;
+	private final Rarities RARITY;
+	protected final Player player;
 	
-	public Item(String pName, String pType, Rarities pRarity) {
+	public Item(String pName, String pType, Rarities pRarity, Player pPlayer) {
 		itemID = new GameID(pType, pName);
-		setRarity(pRarity);
+		RARITY = pRarity;
+		player = pPlayer;
+		pPlayer.AddToInventory(this);
 	}
 	
-	public Item(String pName, String pType) {
+	public Item(String pName, String pType, Player pPlayer) {
 		itemID = new GameID(pType, pName);
-		setRarity(Rarities.COMMON);
+		RARITY = Rarities.COMMON;
+		player = pPlayer;
+		pPlayer.AddToInventory(this);
 	}
 	
+	public boolean removeItem() {
+		return player.getInventory().remove(this);
+	}
 	
 	public GameID getGameID() {
 		return itemID;
@@ -27,12 +36,6 @@ abstract public class Item {
 	}
 	
 	public Rarities getRarity() {
-		return rarity;
+		return RARITY;
 	}
-	
-	protected void setRarity(Rarities pRarity) {
-		rarity = pRarity;
-	}
-	
-	abstract public void consume();
 }

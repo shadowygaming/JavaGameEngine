@@ -1,17 +1,14 @@
 package com.shadowygamer.custom;
 
+import com.shadowygamer.items.Consumable;
 import com.shadowygamer.items.Item;
 import com.shadowygamer.items.Rarities;
 import com.shadowygamer.objects.Player;
 
-public class HealthPotion extends Item {
-	private Player player;
-	public static final Rarities RARITIES = Rarities.COMMON; 
+public class HealthPotion extends Item implements Consumable {
 	
-	public HealthPotion(String pName, Rarities pRarity, Player pPlayer) {
-		super(pName, "healthpotion", RARITIES);
-		player = pPlayer;
-		pPlayer.AddToInventory(this);
+	public HealthPotion(String pName, Player pPlayer) {
+		super(pName, "healthpotion", Rarities.COMMON, pPlayer);
 	}
 
 	@Override
@@ -19,6 +16,7 @@ public class HealthPotion extends Item {
 		int playerHP = player.getStat("health");
 		int playerMaxHP = player.getStat("maxhealth");
 		player.setStat("health", ((playerHP + 3) >= playerMaxHP) ? playerMaxHP : playerHP + 3);
+		removeItem();
 	}
 	
 	//get validity function for browse inventory?

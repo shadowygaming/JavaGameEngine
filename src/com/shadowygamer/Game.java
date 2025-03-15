@@ -6,7 +6,7 @@ import com.shadowygamer.components.Coords2D;
 import com.shadowygamer.components.Grid2D;
 import com.shadowygamer.custom.DetonateExplosives;
 import com.shadowygamer.custom.HealthPotion;
-import com.shadowygamer.items.Rarities;
+import com.shadowygamer.custom.RockItem;
 import com.shadowygamer.objects.GameObject;
 import com.shadowygamer.objects.Info;
 import com.shadowygamer.objects.Interactable;
@@ -55,9 +55,10 @@ public class Game {
 		Register.createRegistry(Statue);
 		Register.createRegistry(test);
 		
-		new HealthPotion("Health Potion", Rarities.COMMON, player);
-		new HealthPotion("Health Potion", Rarities.COMMON, player);
-
+		new HealthPotion("health_potion", player);
+		new HealthPotion("health_potion", player);
+		new RockItem("rock", player);
+		
 		gameloop:
 		while(true) {
 			Coords2D playerLocation = player.getLocation();
@@ -109,7 +110,7 @@ public class Game {
 					test.Interact();
 					break;
 				case 7:
-					player.consume(Utils.browseInventory(player));
+					Utils.browseInventory(player);
 					break;
 				case 8:
 					System.out.println("Terminating");

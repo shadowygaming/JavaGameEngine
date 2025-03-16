@@ -1,13 +1,16 @@
 # Java Text Based Game Engine (JTBGE)
 #### Created by Shadowygamer
 
-## TODO
-- [ ] Remove as many instances of "while(true)" as I can
-- [X] Add items
-- [X] Add player inventory system which holds items
-- [X] Refactor stats to be a hashmap stored in player
-- [ ] 
+&nbsp;
 
+&nbsp;
+# View an Example Project I made: [_link_](https://github.com/shadowygaming/ExampleJavaGame)
+&nbsp;
 
+## To Do
+- [ ] Make javadoc
+- [ ] Make instructions for project creation
+
+&nbsp;
 ## Creating a project
 - To be created later...

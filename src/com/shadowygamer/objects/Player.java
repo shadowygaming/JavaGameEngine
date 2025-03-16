@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import com.shadowygamer.Stat;
 import com.shadowygamer.components.GameID;
 import com.shadowygamer.components.Grid2D;
-import com.shadowygamer.item_components.Item;
+import com.shadowygamer.components.Item;
+import com.shadowygamer.components.Stat;
 
 public class Player extends GameObject {
 	private ArrayList<Stat> Stats;
@@ -54,7 +54,7 @@ public class Player extends GameObject {
 		for(Stat i : Stats) {
 			statsHashMap.put(i.getName(), i);
 		}
-		return statsHashMap;
+		return statsHashMap;	
 	}
 	
 	@Override

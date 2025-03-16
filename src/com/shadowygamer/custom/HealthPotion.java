@@ -1,15 +1,13 @@
 package com.shadowygamer.custom;
 
-import com.shadowygamer.Stat;
-import com.shadowygamer.item_components.Consumable;
-import com.shadowygamer.item_components.Item;
-import com.shadowygamer.item_components.Rarities;
+import com.shadowygamer.components.Consumable;
+import com.shadowygamer.components.Stat;
 import com.shadowygamer.objects.Player;
 
-public class HealthPotion extends Item implements Consumable {
+public class HealthPotion extends RarityItem implements Consumable {
 	
 	public HealthPotion(String pName, Player pPlayer) {
-		super(pName, "healthpotion", Rarities.COMMON, pPlayer);
+		super(pName, "healthpotion", pPlayer, Rarities.COMMON);
 	}
 
 	@Override
@@ -23,6 +21,4 @@ public class HealthPotion extends Item implements Consumable {
 			}
 		}
 	}
-
-	//get validity function for browse inventory?
 }

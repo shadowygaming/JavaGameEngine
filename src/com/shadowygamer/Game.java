@@ -4,10 +4,8 @@ import java.util.HashMap;
 
 import com.shadowygamer.components.Coords2D;
 import com.shadowygamer.components.Grid2D;
-import com.shadowygamer.custom.DetonateExplosives;
 import com.shadowygamer.custom.HealthPotion;
 import com.shadowygamer.custom.HealthStat;
-import com.shadowygamer.custom.RockItem;
 import com.shadowygamer.objects.GameObject;
 import com.shadowygamer.objects.Info;
 import com.shadowygamer.objects.Interactable;
@@ -25,10 +23,9 @@ public class Game {
 			"West",
 			"Inspect",
 			"Check Map",
-			"Interact",
+			"Self Harm",
 			"Use Item",
-			"Quit",
-			"Self Harm"
+			"Quit"
 		};
 		
 		String[] invalidOptions = new String[options.length];
@@ -47,11 +44,9 @@ public class Game {
 		Info Building = new Info("building1", grid, new Coords2D(), buildingDescriptor);
 		Info Building2 = new Info("building2", grid, new Coords2D(1, 3), buildingDescriptor);
 		Player player = new Player("player", grid, new HealthStat(10, "health"));
-		DetonateExplosives test = new DetonateExplosives("plane", grid, new Coords2D(4, 4));
 		
 		new HealthPotion("health_potion", player);
 		new HealthPotion("health_potion", player);
-		new RockItem("rock", player);
 		
 		gameloop:
 		while(true) {
@@ -71,10 +66,9 @@ public class Game {
 			invalidOptions[2] = (grid.isValidPointOnGrid(playerLocation.getX() + 1, playerLocation.getY())) ? "" : options[2];
 			invalidOptions[3] = (grid.isValidPointOnGrid(playerLocation.getX() - 1, playerLocation.getY())) ? "" : options[3];
 			invalidOptions[4] = (firstInfoObjectOnSpace != null) ? "" : options[4];
-			invalidOptions[6] = (firstInteractableOnSpace != null) ? "" : options[6];
 			invalidOptions[7] = (!player.getInventory().isEmpty()) ? "" : options[7];
-			invalidOptions[9] = (playerHealth - 3 > 0) ? "" : options[9];
-
+			
+			if (playerHealth == playerStatHealth.getMinValue()) break;
 			
 			System.out.println("HP " + playerHealth + "/" + playerMaxHealth);
 			
@@ -102,17 +96,15 @@ public class Game {
 					Utils.timeDelay(800);
 					break;
 				case 6:
-					test.Interact();
+					playerStatHealth.addValue(-3);
 					break;
 				case 7:
 					Utils.browseForConsumables(player);
 					break;
 				case 8:
-					System.out.println("Terminating");
 					break gameloop;
-				case 9:
-					playerStatHealth.addValue(-3);
 			}
 		}
+		System.out.println("Ending Game");
 	}
 }

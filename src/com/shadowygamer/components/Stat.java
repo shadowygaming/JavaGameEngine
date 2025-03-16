@@ -1,4 +1,4 @@
-package com.shadowygamer;
+package com.shadowygamer.components;
 
 abstract public class Stat {
 	protected int value;

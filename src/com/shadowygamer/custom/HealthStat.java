@@ -1,6 +1,6 @@
 package com.shadowygamer.custom;
 
-import com.shadowygamer.Stat;
+import com.shadowygamer.components.Stat;
 
 public class HealthStat extends Stat {
 	int maxValue;

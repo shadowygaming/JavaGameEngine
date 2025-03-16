@@ -5,8 +5,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.lang.Thread;
 
-import com.shadowygamer.item_components.Consumable;
-import com.shadowygamer.item_components.Item;
+import com.shadowygamer.components.Consumable;
+import com.shadowygamer.components.Item;
 import com.shadowygamer.objects.GameObject;
 import com.shadowygamer.objects.Player;
 
@@ -102,8 +102,8 @@ public class Utils {
 		ArrayList<Item> inventory = pPlayer.getInventory();
 		ArrayList<Consumable> inventoryConsumables = new ArrayList<>();
 		for(Item i : inventory) {
-			if (i instanceof Consumable) {
-				inventoryConsumables.add((Consumable)i);
+			if (i instanceof Consumable c) {
+				inventoryConsumables.add(c);
 			}
 		}
 		String[] inventoryConsumablesNames = new String[inventoryConsumables.size()];

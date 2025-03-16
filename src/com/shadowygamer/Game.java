@@ -1,14 +1,11 @@
 package com.shadowygamer;
 
-import java.util.HashMap;
-
 import com.shadowygamer.components.Coords2D;
 import com.shadowygamer.components.Grid2D;
 import com.shadowygamer.custom.HealthPotion;
 import com.shadowygamer.custom.HealthStat;
 import com.shadowygamer.objects.GameObject;
 import com.shadowygamer.objects.Info;
-import com.shadowygamer.objects.Interactable;
 import com.shadowygamer.objects.Player;
 
 public class Game {
@@ -31,16 +28,9 @@ public class Game {
 		String[] invalidOptions = new String[options.length];
 		
 		//create descriptors for info objects
-		String statueDescriptor = "The oxidized copper on the statue invokes a spark of creativity...";
 		String buildingDescriptor = "You bear witness to the remnants of a civilization long gone and wonder...";
 		
-		//create default stats to assign to player
-		HashMap<String, Integer> playerStats = new HashMap<>();
-		playerStats.put("health", 10);
-		playerStats.put("maxhealth", 10);
-		
 		//create objects for game
-		Info Statue = new Info("statue", grid, new Coords2D(2, 2), statueDescriptor);
 		Info Building = new Info("building1", grid, new Coords2D(), buildingDescriptor);
 		Info Building2 = new Info("building2", grid, new Coords2D(1, 3), buildingDescriptor);
 		Player player = new Player("player", grid, new HealthStat(10, "health"));
@@ -48,15 +38,12 @@ public class Game {
 		new HealthPotion("health_potion", player);
 		new HealthPotion("health_potion", player);
 		
-		gameloop:
 		while(true) {
 			Coords2D playerLocation = player.getLocation();
 			HealthStat playerStatHealth = (HealthStat) player.getStatsAsHashMap().get("health");
 			int playerHealth = playerStatHealth.getValue();
 			int playerMaxHealth = playerStatHealth.getMaxValue();
-			GameObject firstInfoObjectOnSpace = Utils.getFirstMatchingType(Register.SearchByCoordinates(playerLocation), Info.TYPE);
-			GameObject firstInteractableOnSpace = Utils.getFirstMatchingType(Register.SearchByCoordinates(playerLocation), Interactable.TYPE);
-			
+			GameObject firstInfoObjectOnSpace = Utils.getFirstMatchingType(Register.SearchByCoordinates(playerLocation), Info.TYPE);			
 			
 			System.out.println("\nLocation: " + playerLocation);
 			Utils.timeDelay(300);
@@ -68,7 +55,7 @@ public class Game {
 			invalidOptions[4] = (firstInfoObjectOnSpace != null) ? "" : options[4];
 			invalidOptions[7] = (!player.getInventory().isEmpty()) ? "" : options[7];
 			
-			if (playerHealth == playerStatHealth.getMinValue()) break;
+			if (playerHealth == playerStatHealth.getMinValue()) {System.out.println("You Died...");return;}
 			
 			System.out.println("HP " + playerHealth + "/" + playerMaxHealth);
 			
@@ -102,9 +89,9 @@ public class Game {
 					Utils.browseForConsumables(player);
 					break;
 				case 8:
-					break gameloop;
+					System.out.println("Closing Game...");
+					return;
 			}
 		}
-		System.out.println("Ending Game");
 	}
 }

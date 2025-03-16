@@ -35,5 +35,4 @@ public class Register {
 		}
 		return temp;
 	}
-
 }

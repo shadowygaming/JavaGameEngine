@@ -1,4 +1,4 @@
-package com.shadowygamer.items_components;
+package com.shadowygamer.item_components;
 
 import com.shadowygamer.components.GameID;
 import com.shadowygamer.objects.Player;

@@ -1,37 +1,30 @@
 package com.shadowygamer.objects;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
+import com.shadowygamer.Stat;
 import com.shadowygamer.components.GameID;
 import com.shadowygamer.components.Grid2D;
-import com.shadowygamer.items_components.Item;
+import com.shadowygamer.item_components.Item;
 
 public class Player extends GameObject {
-	private HashMap<String, Integer> Stats = new HashMap<>();
+	private ArrayList<Stat> Stats;
 	private ArrayList<Item> Inventory = new ArrayList<Item>();
 
 
-	public Player(String pName, Grid2D pGrid, HashMap<String, Integer> pStats) {
+	public Player(String pName, Grid2D pGrid, Stat... pStats) {
 		super(pName, "player", pGrid);
-		Stats = pStats;
+		Stats = new ArrayList<>(Arrays.asList(pStats));
 	}
 	
 	public Player(String pName, Grid2D pGrid) {
 		super(pName, TYPE, pGrid);
 	}
-
-	public HashMap<String, Integer> getStatList() {
+	
+	public ArrayList<Stat> getPlayerStats() {
 		return Stats;
-	}
-
-	
-	public void setStat(String pKey, int pValue) {
-		Stats.replace(pKey, pValue);
-	}
-	
-	public int getStat(String pKey) {
-		return Stats.get(pKey);
 	}
 	
 	public Item SearchByID(GameID x) {
@@ -54,6 +47,14 @@ public class Player extends GameObject {
 	
 	public ArrayList<Item> getInventory() {
 		return Inventory;
+	}
+	
+	public HashMap<String, Stat> getStatsAsHashMap() {
+		HashMap<String, Stat> statsHashMap = new HashMap<String, Stat>();
+		for(Stat i : Stats) {
+			statsHashMap.put(i.getName(), i);
+		}
+		return statsHashMap;
 	}
 	
 	@Override

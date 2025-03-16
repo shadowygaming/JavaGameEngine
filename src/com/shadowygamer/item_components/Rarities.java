@@ -1,4 +1,4 @@
-package com.shadowygamer.items_components;
+package com.shadowygamer.item_components;
 
 public enum Rarities {
 	COMMON,

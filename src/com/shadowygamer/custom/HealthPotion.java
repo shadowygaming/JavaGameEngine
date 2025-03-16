@@ -1,8 +1,9 @@
 package com.shadowygamer.custom;
 
-import com.shadowygamer.items_components.Consumable;
-import com.shadowygamer.items_components.Item;
-import com.shadowygamer.items_components.Rarities;
+import com.shadowygamer.Stat;
+import com.shadowygamer.item_components.Consumable;
+import com.shadowygamer.item_components.Item;
+import com.shadowygamer.item_components.Rarities;
 import com.shadowygamer.objects.Player;
 
 public class HealthPotion extends Item implements Consumable {
@@ -13,11 +14,15 @@ public class HealthPotion extends Item implements Consumable {
 
 	@Override
 	public void consume() {
-		int playerHP = player.getStat("health");
-		int playerMaxHP = player.getStat("maxhealth");
-		player.setStat("health", ((playerHP + 3) >= playerMaxHP) ? playerMaxHP : playerHP + 3);
-		removeItem();
+		HealthStat playerHealth;
+		for(Stat i : player.getPlayerStats()) {
+			if (i instanceof HealthStat) {
+				playerHealth = (HealthStat) i;
+				playerHealth.addValue(3);
+				removeItem();
+			}
+		}
 	}
-	
+
 	//get validity function for browse inventory?
 }

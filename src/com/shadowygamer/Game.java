@@ -6,6 +6,7 @@ import com.shadowygamer.components.Coords2D;
 import com.shadowygamer.components.Grid2D;
 import com.shadowygamer.custom.DetonateExplosives;
 import com.shadowygamer.custom.HealthPotion;
+import com.shadowygamer.custom.HealthStat;
 import com.shadowygamer.custom.RockItem;
 import com.shadowygamer.objects.GameObject;
 import com.shadowygamer.objects.Info;
@@ -45,15 +46,8 @@ public class Game {
 		Info Statue = new Info("statue", grid, new Coords2D(2, 2), statueDescriptor);
 		Info Building = new Info("building1", grid, new Coords2D(), buildingDescriptor);
 		Info Building2 = new Info("building2", grid, new Coords2D(1, 3), buildingDescriptor);
-		Player player = new Player("player", grid, playerStats);
+		Player player = new Player("player", grid, new HealthStat(10, "health"));
 		DetonateExplosives test = new DetonateExplosives("plane", grid, new Coords2D(4, 4));
-		
-		//add objects to registry
-		Register.createRegistry(player);
-		Register.createRegistry(Building);
-		Register.createRegistry(Building2);
-		Register.createRegistry(Statue);
-		Register.createRegistry(test);
 		
 		new HealthPotion("health_potion", player);
 		new HealthPotion("health_potion", player);
@@ -62,8 +56,9 @@ public class Game {
 		gameloop:
 		while(true) {
 			Coords2D playerLocation = player.getLocation();
-			int playerHealth = player.getStat("health");
-			int playerMaxHealth = player.getStat("maxhealth");
+			HealthStat playerStatHealth = (HealthStat) player.getStatsAsHashMap().get("health");
+			int playerHealth = playerStatHealth.getValue();
+			int playerMaxHealth = playerStatHealth.getMaxValue();
 			GameObject firstInfoObjectOnSpace = Utils.getFirstMatchingType(Register.SearchByCoordinates(playerLocation), Info.TYPE);
 			GameObject firstInteractableOnSpace = Utils.getFirstMatchingType(Register.SearchByCoordinates(playerLocation), Interactable.TYPE);
 			
@@ -81,7 +76,7 @@ public class Game {
 			invalidOptions[9] = (playerHealth - 3 > 0) ? "" : options[9];
 
 			
-			System.out.println("HP " + player.getStat("health") + "/" + player.getStat("maxhealth"));
+			System.out.println("HP " + playerHealth + "/" + playerMaxHealth);
 			
 			switch(Utils.prompt(options, invalidOptions)) {
 				case 0:
@@ -110,13 +105,13 @@ public class Game {
 					test.Interact();
 					break;
 				case 7:
-					Utils.browseInventory(player);
+					Utils.browseForConsumables(player);
 					break;
 				case 8:
 					System.out.println("Terminating");
 					break gameloop;
 				case 9:
-					player.setStat("health", playerHealth-3);
+					playerStatHealth.addValue(-3);
 			}
 		}
 	}

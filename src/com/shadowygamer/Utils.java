@@ -5,8 +5,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.lang.Thread;
 
-import com.shadowygamer.items_components.Consumable;
-import com.shadowygamer.items_components.Item;
+import com.shadowygamer.item_components.Consumable;
+import com.shadowygamer.item_components.Item;
 import com.shadowygamer.objects.GameObject;
 import com.shadowygamer.objects.Player;
 
@@ -98,7 +98,7 @@ public class Utils {
 		cinematicPrint(printedString, 20);
 	}
 	
-	public static Consumable browseInventory(Player pPlayer) {
+	public static void browseForConsumables(Player pPlayer) {
 		ArrayList<Item> inventory = pPlayer.getInventory();
 		ArrayList<Consumable> inventoryConsumables = new ArrayList<>();
 		for(Item i : inventory) {
@@ -111,7 +111,7 @@ public class Utils {
 			inventoryConsumablesNames[i] = pPlayer.getInventory().get(i).getGameID().getName();
 		}
 		int selection = prompt(inventoryConsumablesNames);
-		return inventoryConsumables.get(selection);
+		inventoryConsumables.get(selection).consume();;
 	}
 
 }

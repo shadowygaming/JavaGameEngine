@@ -1,5 +1,6 @@
 package com.shadowygamer.objects;
 
+import com.shadowygamer.Register;
 import com.shadowygamer.components.Coords2D;
 import com.shadowygamer.components.GameID;
 import com.shadowygamer.components.Grid2D;
@@ -15,12 +16,11 @@ public class GameObject {
 		objectID = new GameID(pType, pName);
 		local = pCoords;
 		home = pGrid;
+		Register.createRegistry(this);
 	}
 	
 	public GameObject(String pName, String pType, Grid2D pGrid) {
-		objectID = new GameID(pType, pName);
-		local = new Coords2D();
-		home = pGrid;
+		this(pName, pType, pGrid, new Coords2D());
 	}
 
 	//TODO: add error handling for invalid points (3)

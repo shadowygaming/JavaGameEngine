@@ -6,8 +6,8 @@ import java.util.HashMap;
 
 import com.shadowygamer.components.GameID;
 import com.shadowygamer.components.Grid2D;
-import com.shadowygamer.components.Item;
-import com.shadowygamer.components.Stat;
+import com.shadowygamer.objects.player.Item;
+import com.shadowygamer.objects.player.Stat;
 
 public class Player extends GameObject {
 	private ArrayList<Stat> Stats;

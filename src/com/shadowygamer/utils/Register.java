@@ -1,4 +1,4 @@
-package com.shadowygamer;
+package com.shadowygamer.utils;
 
 import java.util.ArrayList;
 import java.util.HashMap;

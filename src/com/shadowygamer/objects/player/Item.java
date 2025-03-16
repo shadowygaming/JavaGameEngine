@@ -1,5 +1,6 @@
-package com.shadowygamer.components;
+package com.shadowygamer.objects.player;
 
+import com.shadowygamer.components.GameID;
 import com.shadowygamer.objects.Player;
 
 abstract public class Item {

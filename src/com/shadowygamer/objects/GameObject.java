@@ -1,9 +1,9 @@
 package com.shadowygamer.objects;
 
-import com.shadowygamer.Register;
 import com.shadowygamer.components.Coords2D;
 import com.shadowygamer.components.GameID;
 import com.shadowygamer.components.Grid2D;
+import com.shadowygamer.utils.Register;
 
 public class GameObject {
 	public static final String TYPE = "gameobject";

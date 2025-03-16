@@ -1,4 +1,4 @@
-package com.shadowygamer.components;
+package com.shadowygamer.objects.player;
 
 public interface Consumable {
 

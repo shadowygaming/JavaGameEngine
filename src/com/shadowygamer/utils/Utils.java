@@ -1,14 +1,14 @@
-package com.shadowygamer;
+package com.shadowygamer.utils;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.lang.Thread;
 
-import com.shadowygamer.components.Consumable;
-import com.shadowygamer.components.Item;
 import com.shadowygamer.objects.GameObject;
 import com.shadowygamer.objects.Player;
+import com.shadowygamer.objects.player.Consumable;
+import com.shadowygamer.objects.player.Item;
 
 public class Utils {
 	public static Scanner sc = new Scanner(System.in);

@@ -3,7 +3,6 @@
 
 &nbsp;
 
-&nbsp;
 # View an Example Project I made: [_link_](https://github.com/shadowygaming/ExampleJavaGame)
 &nbsp;
 

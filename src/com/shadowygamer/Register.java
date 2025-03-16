@@ -18,12 +18,7 @@ public class Register {
 	}
 	
 	public static GameObject SearchByID(GameID x) {
-		for(GameID i : instances.keySet()) {
-			if(i.equals(x)) {
-				return instances.get(i);
-			}
-		}
-		return null;
+		return instances.get(x);
 	}
 	
 	public static ArrayList<GameObject> SearchByCoordinates(Coords2D pCoords2d) {
